@@ -1,0 +1,53 @@
+footer {
+  max-width: 1000px;
+  margin: 50px auto 10px auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+footer .newsletter span {
+  padding: 0 10px;
+  color: var(--main-text);
+}
+footer .newsletter input {
+  border: 1px solid var(--more-light-text);
+  padding: 5px;
+  font-size: 0.9rem;
+  height: 30px;
+  width: 200px;
+  outline: none;
+}
+footer .newsletter button {
+  outline: none;
+  border: none;
+  padding: 5px;
+  height: 30px;
+  background: var(--main-text);
+  color: #fff;
+  font-weight: bold;
+}
+footer .social {
+  padding-right: 20px;
+}
+footer .social ul li {
+  list-style: none;
+  display: inline;
+  padding: 0 10px;
+}
+footer .social ul li svg {
+  width: 30px;
+  height: 30px;
+}
+@media screen and (max-width: 650px) {
+  footer .newsletter span {
+    display: block;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+  footer {
+    flex-direction: column;
+  }
+  footer .social {
+    margin-top: 20px;
+  }
+}
