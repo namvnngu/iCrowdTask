@@ -10,7 +10,7 @@ const signup_get = (req, res) => {
 };
 
 const signup_post = (req, res) => {
-  // Mongoose generates ID automically by defaul
+  // Mongoose generates ID automically by default
   const { success, message } = validate(req);
   if (success) {
     checkUserExist(req.body.email).then((existingUser) => {
@@ -27,19 +27,24 @@ const signup_post = (req, res) => {
         SendEmail.SendGrid(req.body.email);
 
         const user = new User(userInfo);
+        // user
+        //   .save()
+        //   .then(() => res.redirect("/login"))
+        //   .catch((err) => console.log(err));
         user
           .save()
-          .then(() => res.redirect("/login"))
-          .catch((err) => console.log(err));
+          .then((user) => res.json(user))
+          .catch((err) => res.json({ error: "Failed" }));
       } else {
-        res.render("reqsignup", {
-          message: existingUser.message,
-          visible: "visibility: visible",
-        });
+        // res.render("reqsignup", {
+        //   message: existingUser.message,
+        //   visible: "visibility: visible",
+        // });
+        res.json({ error: "The email was already regiestered" });
       }
     });
   } else {
-    res.render("reqsignup", { message });
+    res.json({ error: "Failed" });
   }
 };
 // Login In

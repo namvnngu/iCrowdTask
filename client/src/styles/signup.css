@@ -266,7 +266,6 @@
 
 /* incorrect */
 .registration .incorrect {
-  visibility: hidden;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -280,5 +279,5 @@
 .registration .incorrect svg {
   height: 15px;
   cursor: pointer;
-  color: var(--secondary);
+  color: var(--error);
 }
