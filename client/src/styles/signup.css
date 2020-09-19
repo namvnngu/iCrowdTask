@@ -1,0 +1,284 @@
+.warning {
+  color: var(--main-text);
+}
+.warning-span {
+  color: var(--error);
+}
+.registration {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  max-width: 720px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.registration input {
+  padding: 5px 10px !important;
+}
+.registration .form-body {
+  padding: 0 20px;
+  width: calc(100% * 0.95);
+}
+.form-name {
+  margin: 20px 0;
+  text-align: center;
+  color: var(--main-text);
+}
+/* Country */
+.registration .form-body .country {
+  margin-bottom: 15px;
+}
+.registration .form-body .country label {
+  display: block;
+  color: var(--main-text);
+}
+.registration .form-body .country select {
+  width: 100%;
+  height: 35px;
+  text-align-last: center;
+  color: var(--main-text);
+  border: 1px solid rgb(182, 182, 182);
+  border-radius: 0.2rem;
+  margin-top: 5px;
+  outline-color: var(--light-text);
+}
+/* Name */
+.registration .form-body .name {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 15px;
+  color: var(--main-text);
+  width: 100%;
+}
+.registration .form-body .name div {
+  width: 100%;
+}
+.registration .form-body .name label {
+  display: block;
+}
+.registration .form-body .name input {
+  height: 35px;
+  color: var(--main-text);
+  border: 1px solid rgb(182, 182, 182);
+  border-radius: 0.2rem;
+  margin-top: 5px;
+  outline-color: var(--light-text);
+  padding: 5px;
+}
+.registration .form-body .name .first-name {
+  margin-right: 5px;
+}
+.registration .form-body .name .last-name {
+  margin-left: 5px;
+}
+.registration .form-body .name #first-name {
+  width: 100%;
+}
+.registration .form-body .name #last-name {
+  width: 100%;
+}
+/* Email */
+.registration .form-body .email {
+  margin-bottom: 15px;
+  color: var(--main-text);
+  width: 100%;
+}
+.registration .form-body .email label {
+  display: block;
+}
+.registration .form-body .email input {
+  width: 100%;
+  color: var(--main-text);
+  border: 1px solid rgb(182, 182, 182);
+  border-radius: 0.2rem;
+  margin-top: 5px;
+  outline-color: var(--light-text);
+  padding: 5px;
+  height: 35px;
+}
+/* Password */
+.registration .form-body .password {
+  margin-bottom: 15px;
+  color: var(--main-text);
+  width: 100%;
+}
+.registration .form-body .password label {
+  display: block;
+}
+.registration .form-body .password input {
+  width: 100%;
+  color: var(--main-text);
+  border: 1px solid rgb(182, 182, 182);
+  border-radius: 0.2rem;
+  margin-top: 5px;
+  outline-color: var(--light-text);
+  padding: 5px;
+  height: 35px;
+}
+/* Re-password */
+.registration .form-body .re-password {
+  margin-bottom: 15px;
+  color: var(--main-text);
+  width: 100%;
+}
+.registration .form-body .re-password label {
+  display: block;
+}
+.registration .form-body .re-password input {
+  width: 100%;
+  color: var(--main-text);
+  border: 1px solid rgb(182, 182, 182);
+  border-radius: 0.2rem;
+  margin-top: 5px;
+  outline-color: var(--light-text);
+  padding: 5px;
+  height: 35px;
+}
+/* Address */
+.registration .form-body .address {
+  margin-bottom: 15px;
+  color: var(--main-text);
+  width: 100%;
+}
+.registration .form-body .address label {
+  display: block;
+}
+.registration .form-body .address input {
+  width: 100%;
+  color: var(--main-text);
+  border: 1px solid rgb(182, 182, 182);
+  border-radius: 0.2rem;
+  margin-top: 5px;
+  outline-color: var(--light-text);
+  padding: 5px;
+  height: 35px;
+}
+/* City */
+.registration .form-body .city {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  margin-bottom: 15px;
+  color: var(--main-text);
+  width: 100%;
+}
+.registration .form-body .city div {
+  width: 100%;
+}
+.registration .form-body .city label {
+  display: block;
+}
+.registration .form-body .city input {
+  height: 35px;
+  color: var(--main-text);
+  border: 1px solid rgb(182, 182, 182);
+  border-radius: 0.2rem;
+  margin-top: 5px;
+  outline-color: var(--light-text);
+  padding: 5px;
+}
+.registration .form-body .city .city-name {
+  margin-right: 5px;
+}
+.registration .form-body .city .state {
+  margin-left: 5px;
+}
+.registration .form-body .city #city {
+  width: 100%;
+}
+.registration .form-body .city #state {
+  width: 100%;
+}
+/* Zip Code */
+.registration .form-body .zip-code {
+  margin-bottom: 15px;
+  color: var(--main-text);
+  width: 100%;
+}
+.registration .form-body .zip-code label {
+  display: block;
+}
+.registration .form-body .zip-code input {
+  width: 100%;
+  color: var(--main-text);
+  border: 1px solid rgb(182, 182, 182);
+  border-radius: 0.2rem;
+  margin-top: 5px;
+  outline-color: var(--light-text);
+  padding: 5px;
+  height: 35px;
+}
+/* Phone */
+.registration .form-body .phone-number {
+  margin-bottom: 15px;
+  color: var(--main-text);
+  width: 100%;
+}
+.registration .form-body .phone-number label {
+  display: block;
+}
+.registration .form-body .phone-number input {
+  height: 35px;
+  width: 100%;
+  color: var(--main-text);
+  border: 1px solid rgb(182, 182, 182);
+  border-radius: 0.2rem;
+  margin-top: 5px;
+  outline-color: var(--light-text);
+  padding: 5px;
+}
+/* Button Submit */
+.registration .form-body .submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.registration .form-body .submit button {
+  border: none;
+  color: var(--main-text);
+  border-radius: 36px;
+  background: var(--primary);
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 0.8em;
+  display: block;
+  padding: 10px 16px;
+  letter-spacing: 2px;
+  text-align: center;
+}
+.form-body .submit button:hover {
+  background: var(--secondary);
+}
+
+.registration .login-page {
+  margin: 10px 0 50px 0;
+}
+.registration .login-page a {
+  text-decoration: none;
+  align-items: center;
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--light-text);
+}
+
+/* incorrect */
+.registration .incorrect {
+  visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px;
+  border-radius: 5px;
+}
+.registration .incorrect .message {
+  color: var(--error);
+  font-size: 0.8rem;
+}
+.registration .incorrect svg {
+  height: 15px;
+  cursor: pointer;
+  color: var(--secondary);
+}
