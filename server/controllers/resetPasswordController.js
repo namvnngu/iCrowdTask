@@ -6,10 +6,9 @@ const validator = require("validator");
 const bcrypt = require("bcrypt");
 const uuid = require("uuid");
 sgMail.setApiKey(SENDGRID_API_KEY);
+const { URL } = require("../functions/constants");
 
 const sendToken = (user) => {
-  const URL = "https://icrowdtask.herokuapp.com";
-  //const URL = "http://localhost:3000";
   const tokenLink = `${URL}/recovery/reset-password/${user.recoverPasswordToken}`;
   const msg = {
     to: user.email,

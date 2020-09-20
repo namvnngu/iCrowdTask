@@ -3,6 +3,7 @@ const validate = require("../functions/validateRequest");
 const { hashPassword, reHashPassword } = require("../functions/hashPassword");
 const checkUserExist = require("../functions/checkUser");
 const SendEmail = require("../functions/SendEmail");
+const passport = require("passport");
 
 // User Registration
 const signup_get = (req, res) => {
@@ -71,6 +72,12 @@ const login_post = (req, res) => {
     .catch((err) => console.log(err));
 };
 
+const passport_login = (req, res, next) => {
+  passport.authenticate("local", (err, user, info) => {
+    res.json({ err, user, info });
+  })(req, res, next);
+};
+
 const log_out_get = (req, res) => {
   req.logout();
   res.cookie("isSave", "false", { httpOnly: true, maxAge: 3600 * 1000 });
@@ -90,6 +97,7 @@ module.exports = {
   signup_post,
   login_get,
   login_post,
+  passport_login,
   log_out_get,
   save_session,
 };

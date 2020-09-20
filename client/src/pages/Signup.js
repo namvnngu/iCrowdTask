@@ -134,7 +134,13 @@ const EmailInput = ({ user, setUser, setError }) => {
       <label htmlFor="email">
         Email<span className="warning-span">*</span>
       </label>
-      <input type="email" name="email" id="email" onChange={handleChange} />
+      <input
+        type="email"
+        name="email"
+        id="email"
+        onChange={handleChange}
+        value={user.email}
+      />
     </div>
   );
 };
@@ -158,6 +164,7 @@ const PasswordInput = ({ user, setUser, setError }) => {
           name="password"
           id="password"
           onChange={handlePassword}
+          value={user.password}
         />
       </div>
       <div className="re-password">
@@ -169,6 +176,7 @@ const PasswordInput = ({ user, setUser, setError }) => {
           name="rePassword"
           id="re-password"
           onChange={handleRepassowrd}
+          value={user.rePassword}
         />
       </div>
     </>
@@ -259,6 +267,7 @@ const PhoneInput = ({ user, setUser, setError }) => {
         name="phoneNumber"
         id="phone-number"
         onChange={handlePhone}
+        value={user.phoneNumber}
       />
     </div>
   );

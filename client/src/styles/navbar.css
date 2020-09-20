@@ -42,7 +42,7 @@ header nav ul li {
 }
 
 /* Login Button */
-header .login {
+header .login-container {
   transform: translatex(-50px);
 }
 
@@ -97,7 +97,7 @@ header .login {
   header nav {
     display: none;
   }
-  header .login {
+  header .login-container {
     transform: translatex(0px);
     margin-right: -15px;
   }

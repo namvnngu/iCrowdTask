@@ -28,17 +28,17 @@ function validateSignUp(user, setUser) {
   }
   if (!validator.isEmail(email)) {
     message = "Please provide correct email";
-    setUser({ ...user, email });
+    setUser({ ...user, email: "" });
     return { success: false, message };
   }
   if (!validator.equals(password, rePassword)) {
     message = "Password doesn't match with Confirm password";
-    setUser({ ...user, password, rePassword });
+    setUser({ ...user, password: "", rePassword: "" });
     return { success: false, message };
   }
   if (!validator.isLength(password, { min: 8 })) {
     message = "Your password must be at least 8 character";
-    setUser({ ...user, password, rePassword });
+    setUser({ ...user, password: "", rePassword: "" });
     return { success: false, message };
   }
   if (validator.isEmpty(address1)) {
@@ -86,7 +86,7 @@ function validateSignUp(user, setUser) {
     ])
   ) {
     message = "Please provide the correct phone number";
-    setUser({ ...user, phoneNumber });
+    setUser({ ...user, phoneNumber: "" });
     return { success: false, message };
   }
   return { success: true, message: "" };

@@ -1,28 +1,81 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import validateLogin from "../utils/validatorLogin";
+import axios from "axios";
+import { URL, clientId } from "../utils/constants";
+import { Redirect } from "react-router-dom";
+import { useGoogleLogin } from "react-google-login";
+import { addGoogleUser, checkUserExists } from "../utils/GoogleUser";
+import Cookies from "js-cookie";
+import AuthContext from "../contexts/authContext";
 
 const Login = () => {
+  const auth = useContext(AuthContext);
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+    savePassowrd: "off",
+  });
+  const [error, setError] = useState(null);
+  const [redirect, setRedirect] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { success, message } = validateLogin(user, setUser);
+    if (!success) {
+      setError(message);
+    } else {
+      const { data } = await axios.post(`${URL}/login`, { ...user });
+      if (data.user) {
+        let timeExpire;
+        if (user.savePassowrd === "on") {
+          timeExpire = new Date(new Date().getTime() + 60 * 60 * 1000);
+        } else {
+          timeExpire = new Date(new Date().getTime() + 60 * 1000);
+        }
+        Cookies.set("alias", data.user._id, {
+          expires: timeExpire,
+          sameSite: "strict",
+        });
+        setRedirect(true);
+      } else {
+        setUser({ ...user, password: "", email: "" });
+        setError(data.info.message);
+      }
+    }
+  };
+  useEffect(() => {
+    return () => {
+      if (redirect) {
+        auth.setAuth(true);
+      }
+    };
+  });
+
+  if (redirect) {
+    return <Redirect to="/" />;
+  }
   return (
     <div className="login">
       <div className="form-name">
         <h2>iCrowdTask Login</h2>
       </div>
-      <form className="form-body" method="POST" action="/login">
-        <IncorrectMessage />
-        <EmailInput />
-        <PasswordInput />
-        <PasswordConfig />
+      <form className="form-body" onSubmit={handleSubmit}>
+        {error && <IncorrectMessage error={error} />}
+        <EmailInput user={user} setUser={setUser} setError={setError} />
+        <PasswordInput user={user} setUser={setUser} setError={setError} />
+        <PasswordConfig user={user} setUser={setUser} setError={setError} />
         <SubmitButton />
-        <GoogleLogin />
+        <GoogleLogin setError={setError} setRedirect={setRedirect} />
       </form>
       <CreateAccount />
     </div>
   );
 };
 
-const IncorrectMessage = () => {
+const IncorrectMessage = ({ error }) => {
   return (
     <div className="incorrect">
-      <div className="message"></div>
+      <div className="message">{error}</div>
       <div className="symbol">
         <svg viewBox="0 0 20 20" fill="currentColor">
           <path
@@ -35,27 +88,54 @@ const IncorrectMessage = () => {
     </div>
   );
 };
-const EmailInput = () => {
+const EmailInput = ({ user, setUser, setError }) => {
+  const handleChange = (e) => {
+    setError(null);
+    setUser({ ...user, email: e.target.value });
+  };
   return (
     <div className="email">
       <label htmlFor="email">Email</label>
-      <input type="email" name="email" id="email" required />
+      <input
+        type="email"
+        name="email"
+        id="email"
+        required
+        onChange={handleChange}
+        value={user.email}
+      />
     </div>
   );
 };
-const PasswordInput = () => {
+const PasswordInput = ({ user, setUser, setError }) => {
+  const handleChange = (e) => {
+    setError(null);
+    setUser({ ...user, password: e.target.value });
+  };
   return (
     <div className="password">
       <label htmlFor="password">Password</label>
-      <input type="password" name="password" id="password" required />
+      <input
+        type="password"
+        name="password"
+        id="password"
+        required
+        onChange={handleChange}
+        value={user.password}
+      />
     </div>
   );
 };
-const PasswordConfig = () => {
+const PasswordConfig = ({ user, setUser, setError }) => {
+  const handleChange = (e) => {
+    setError(null);
+    setUser({ ...user, savePassowrd: e.target.value });
+  };
+
   return (
     <div className="password-config">
       <div className="save">
-        <input type="checkbox" name="save" id="save" />
+        <input type="checkbox" name="save" id="save" onChange={handleChange} />
         <label htmlFor="save">Save password</label>
       </div>
       <div className="forgot">
@@ -71,11 +151,33 @@ const SubmitButton = () => {
     </div>
   );
 };
-const GoogleLogin = () => {
+const GoogleLogin = ({ setError, setRedirect }) => {
+  const onSuccess = async (res) => {
+    const existingUser = await checkUserExists(res.profileObj.googleId);
+    if (!existingUser) {
+      addGoogleUser(res.profileObj);
+    }
+    let timeExpire = new Date(new Date().getTime() + 60 * 60 * 1000);
+    Cookies.set("alias", res.profileObj.googleId, {
+      expires: timeExpire,
+      sameSite: "strict",
+    });
+    setRedirect(true);
+  };
+  const onFailure = (res) => {
+    console.log("Failure");
+  };
+  const { signIn } = useGoogleLogin({
+    onSuccess,
+    onFailure,
+    clientId,
+    isSignedIn: true,
+    accessType: "offline",
+  });
   return (
     <div className="google-login">
-      <a className="google-button" id="google-button" href="/auth/google">
-        <span className="google-button-icon">
+      <div className="google-button" id="google-button" onClick={signIn}>
+        <span className="google-button-icon" onClick={() => setError(null)}>
           <svg viewBox="0 0 366 372" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M125.9 10.2c40.2-13.9 85.3-13.6 125.3 1.1 22.2 8.2 42.5 21 59.9 37.1-5.8 6.3-12.1 12.2-18.1 18.3l-34.2 34.2c-11.3-10.8-25.1-19-40.1-23.6-17.6-5.3-36.6-6.1-54.6-2.2-21 4.5-40.5 15.5-55.6 30.9-12.2 12.3-21.4 27.5-27 43.9-20.3-15.8-40.6-31.5-61-47.3 21.5-43 60.1-76.9 105.4-92.4z"
@@ -99,7 +201,7 @@ const GoogleLogin = () => {
           </svg>
         </span>
         <span className="google-button-text">Sign in with Google</span>
-      </a>
+      </div>
     </div>
   );
 };

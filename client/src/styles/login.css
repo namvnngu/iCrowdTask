@@ -118,6 +118,8 @@
 .login .incorrect .message {
   color: var(--error);
   font-size: 0.8rem;
+  margin-right: 5px;
+  transform: translateY(-3px);
 }
 .login .incorrect svg {
   height: 15px;
