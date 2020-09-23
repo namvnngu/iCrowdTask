@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 const Uploader = ({ image, setImage, setError }) => {
   return (
@@ -38,13 +39,23 @@ const DirectUploader = ({ image, setImage, setError }) => {
         ></input>
         <span>Upload image</span>
       </label>
-      <div className="image-name">{image && (image.name || "image.png")}</div>
+      <div className="image-name">{image && image.name}</div>
     </div>
   );
 };
 
 const TakePhoto = ({ image, setImage }) => {
   const [screenshot, setScreenShot] = useState(true);
+  const [dataURL, setDataURL] = useState(null);
+  const urltoFile = (url, filename, mimeType) => {
+    return fetch(url)
+      .then(function (res) {
+        return res.arrayBuffer();
+      })
+      .then(function (buf) {
+        return new File([buf], filename, { type: mimeType });
+      });
+  };
   const handleSuccess = (stream) => {
     let video = document.querySelector("#video");
     window.stream = stream;
@@ -78,8 +89,12 @@ const TakePhoto = ({ image, setImage }) => {
       canvas.width = video.videoWidth;
       canvas.height = video.videoHeight;
       canvas.getContext("2d").drawImage(video, 0, 0);
-      setImage(canvas.toDataURL());
-      setScreenShot(false);
+      let data = canvas.toDataURL();
+      setDataURL(data);
+      urltoFile(data, `${uuidv4()}.png`, "image/png").then((file) => {
+        setImage(file);
+        setScreenShot(false);
+      });
     } else {
       openCamera();
       setScreenShot(true);
@@ -95,7 +110,7 @@ const TakePhoto = ({ image, setImage }) => {
           {!image && (
             <video height="280" width="370" id="video" autoPlay muted></video>
           )}
-          {image && <img src={image} alt="Display screenshot" />}
+          {image && <img src={dataURL} alt="Display screenshot" />}
         </div>
         <canvas style={{ display: "none" }}></canvas>
         <div className="take-photo-buttons">
