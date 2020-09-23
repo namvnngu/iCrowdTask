@@ -4,6 +4,7 @@ import validateSignUp from "../utils/validatorSignup";
 import { Redirect } from "react-router-dom";
 import { URL } from "../utils/constants";
 import axios from "axios";
+import Uploader from "../components/Uploader";
 
 const Signup = () => {
   const [user, setUser] = useState({
@@ -22,20 +23,25 @@ const Signup = () => {
   });
   const [redirect, setRedirect] = useState(false);
   const [error, setError] = useState(null);
+  const [image, setImage] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { success, message } = validateSignUp(user, setUser);
-    if (!success) {
-      setError(message);
-    } else {
-      const { data } = await axios.post(`${URL}/signup`, { ...user });
-      // console.log(data);
-      if (data.error) {
-        setError(data.error);
+    if (image !== null) {
+      if (!success) {
+        setError(message);
       } else {
-        setRedirect(true);
+        const { data } = await axios.post(`${URL}/signup`, { ...user });
+        // console.log(data);
+        if (data.error) {
+          setError(data.error);
+        } else {
+          setRedirect(true);
+        }
       }
+    } else {
+      setError("Please provide your face photo");
     }
   };
   if (redirect) {
@@ -49,6 +55,7 @@ const Signup = () => {
       <form className="form-body" onSubmit={handleSubmit}>
         <WaringSign />
         {error && <WarningMessage error={error} setError={setError} />}
+        <Uploader image={image} setImage={setImage} setError={setError} />
         <CountryInput user={user} setUser={setUser} setError={setError} />
         <NameInput user={user} setUser={setUser} setError={setError} />
         <EmailInput user={user} setUser={setUser} setError={setError} />
