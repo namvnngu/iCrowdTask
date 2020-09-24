@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import countryList from "../data/country";
 import validateSignUp from "../utils/validatorSignup";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { URL } from "../utils/constants";
 import axios from "axios";
 import Uploader from "../components/Uploader";
@@ -289,7 +289,7 @@ const SubmitButton = () => {
 const LoginBack = () => {
   return (
     <div className="login-page">
-      <a href="/login">Log In</a>
+      <Link to="/login">Log In</Link>
     </div>
   );
 };

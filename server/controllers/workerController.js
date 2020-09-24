@@ -71,6 +71,17 @@ const get_worker_by_id = (req, res) => {
 };
 
 /*
+  @method: POST 
+  @url: /workers/by-email
+*/
+const get_worker_by_email = (req, res) => {
+  const { email } = req.body;
+  User.findOne({ email })
+    .then((user) => res.json({ user, status: "success" }))
+    .catch((err) => res.json({ user: "", status: "error" }));
+};
+
+/*
   @method: POST
   @url: /workers/:id
   @body
@@ -221,6 +232,7 @@ module.exports = {
   delete_workers,
   get_worker_by_id,
   add_worker_by_id,
+  get_worker_by_email,
   delete_worker_by_id,
   update_address_by_id,
   update_password_by_id,

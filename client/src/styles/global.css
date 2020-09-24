@@ -42,3 +42,27 @@ a:active {
   letter-spacing: 2px;
   text-align: center;
 }
+.loader-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loader-container .loader {
+  border: 16px solid var(--more-light-text);
+  border-top: 16px solid var(--secondary);
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -7,6 +7,8 @@ import Login from "./pages/Login";
 import { ProtectedHome, ProtectedLogin } from "./components/ProtectedRoute";
 import AuthContext from "./contexts/authContext";
 import Cookies from "js-cookie";
+import ResetSendingEmail from "./pages/ResetSendingEmail";
+import ResetPassword from "./pages/ResetPassword";
 
 function App() {
   const [auth, setAuth] = useState(false);
@@ -42,6 +44,18 @@ function App() {
                 path="/login"
                 auth={auth}
                 component={Login}
+              />
+              <ProtectedLogin
+                exact
+                path="/recovery/forgot"
+                auth={auth}
+                component={ResetSendingEmail}
+              />
+              <ProtectedLogin
+                exact
+                path="/recovery/reset-password/:id"
+                auth={auth}
+                component={ResetPassword}
               />
             </>
           )}

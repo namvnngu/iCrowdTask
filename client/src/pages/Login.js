@@ -7,6 +7,7 @@ import { useGoogleLogin } from "react-google-login";
 import { addGoogleUser, checkUserExists } from "../utils/GoogleUser";
 import Cookies from "js-cookie";
 import AuthContext from "../contexts/authContext";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const auth = useContext(AuthContext);
@@ -60,7 +61,7 @@ const Login = () => {
         <h2>iCrowdTask Login</h2>
       </div>
       <form className="form-body" onSubmit={handleSubmit}>
-        {error && <IncorrectMessage error={error} />}
+        {error && <IncorrectMessage error={error} setError={setError} />}
         <EmailInput user={user} setUser={setUser} setError={setError} />
         <PasswordInput user={user} setUser={setUser} setError={setError} />
         <PasswordConfig user={user} setUser={setUser} setError={setError} />
@@ -72,11 +73,11 @@ const Login = () => {
   );
 };
 
-const IncorrectMessage = ({ error }) => {
+const IncorrectMessage = ({ setError, error }) => {
   return (
     <div className="incorrect">
       <div className="message">{error}</div>
-      <div className="symbol">
+      <div className="symbol" onClick={() => setError(null)}>
         <svg viewBox="0 0 20 20" fill="currentColor">
           <path
             fillRule="evenodd"
@@ -139,7 +140,7 @@ const PasswordConfig = ({ user, setUser, setError }) => {
         <label htmlFor="save">Save password</label>
       </div>
       <div className="forgot">
-        <a href="/recovery/forgot">Forgot?</a>
+        <Link to="/recovery/forgot">Forgot?</Link>
       </div>
     </div>
   );
@@ -208,7 +209,7 @@ const GoogleLogin = ({ setError, setRedirect }) => {
 const CreateAccount = () => {
   return (
     <div className="sign-up-account">
-      <a href="/signup">Create a new account</a>
+      <Link to="/signup">Create a new account</Link>
     </div>
   );
 };
