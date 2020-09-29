@@ -6,7 +6,7 @@ const Uploader = ({ image, setImage, setError }) => {
     <div className="uploader-container">
       <DirectUploader image={image} setImage={setImage} setError={setError} />
       <div className="break">OR</div>
-      <TakePhoto image={image} setImage={setImage} />
+      <TakePhoto image={image} setImage={setImage} setError={setError} />
     </div>
   );
 };
@@ -44,7 +44,7 @@ const DirectUploader = ({ image, setImage, setError }) => {
   );
 };
 
-const TakePhoto = ({ image, setImage }) => {
+const TakePhoto = ({ image, setImage, setError }) => {
   const [screenshot, setScreenShot] = useState(true);
   const [dataURL, setDataURL] = useState(null);
   const urltoFile = (url, filename, mimeType) => {
@@ -75,6 +75,7 @@ const TakePhoto = ({ image, setImage }) => {
     console.error("Error", error);
   };
   const openCamera = () => {
+    setError(null);
     setImage(null);
     let camera = document.querySelector(".uploader-container .camera ");
     camera.style.display = "initial";

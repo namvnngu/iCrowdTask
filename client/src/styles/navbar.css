@@ -39,6 +39,7 @@ header nav ul li {
   padding: 10px;
   font-weight: bold;
   color: var(--main-text);
+  cursor: pointer;
 }
 
 /* Login Button */
@@ -142,6 +143,7 @@ header .login-container {
     padding: 7px;
     font-weight: bold;
     color: var(--light-text);
+    cursor: pointer;
   }
   .nav-mobile .close {
     cursor: pointer;
@@ -159,5 +161,6 @@ header .login-container {
     color: var(--main-text);
     font-size: 1.2rem;
     font-weight: 500;
+    cursor: pointer;
   }
 }

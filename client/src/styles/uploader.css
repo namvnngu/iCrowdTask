@@ -7,7 +7,19 @@
   border-radius: 5px;
   margin: 10px;
   box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
+  -webkit-transition-duration: 10ms;
+  transition-duration: 10ms;
   font-size: 0.9rem;
+}
+.uploader-container .direct-image label span:focus,
+.uploader-container .direct-image label span:hover {
+  box-shadow: 1px 4px 5px 1px rgba(0, 0, 0, 0.1);
+}
+.uploader-container .direct-image label span:active {
+  background-color: var(--secondary);
+  box-shadow: none;
+  -webkit-transition-duration: 10ms;
+  transition-duration: 10ms;
 }
 .uploader-container .direct-image .image-name {
   color: var(--main-text);
@@ -36,6 +48,18 @@
   margin: 10px;
   box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
   font-size: 0.9rem;
+  -webkit-transition-duration: 10ms;
+  transition-duration: 10ms;
+}
+.uploader-container .take-photo:focus,
+.uploader-container .take-photo:hover {
+  box-shadow: 1px 4px 5px 1px rgba(0, 0, 0, 0.1);
+}
+.uploader-container .take-photo:active {
+  background-color: var(--secondary);
+  box-shadow: none;
+  -webkit-transition-duration: 10ms;
+  transition-duration: 10ms;
 }
 .uploader-container .camera {
   display: none;

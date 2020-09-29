@@ -26,7 +26,7 @@ const ResetPassword = () => {
         setInvalid(true);
       }
     });
-  }, []);
+  }, [id]);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { success, message } = validatePassword(password);

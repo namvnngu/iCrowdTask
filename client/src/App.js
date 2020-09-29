@@ -9,6 +9,8 @@ import AuthContext from "./contexts/authContext";
 import Cookies from "js-cookie";
 import ResetSendingEmail from "./pages/ResetSendingEmail";
 import ResetPassword from "./pages/ResetPassword";
+import EmailInputToFace from "./pages/EmailInputToFace";
+import FaceRecognition from "./pages/FaceRecognition";
 
 function App() {
   const [auth, setAuth] = useState(false);
@@ -56,6 +58,18 @@ function App() {
                 path="/recovery/reset-password/:id"
                 auth={auth}
                 component={ResetPassword}
+              />
+              <ProtectedLogin
+                exact
+                path="/login/face/email"
+                auth={auth}
+                component={EmailInputToFace}
+              />
+              <ProtectedLogin
+                exact
+                path="/login/face/"
+                auth={auth}
+                component={FaceRecognition}
               />
             </>
           )}

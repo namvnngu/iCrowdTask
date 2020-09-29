@@ -6,6 +6,13 @@
 
 1. Login by user's face
 2. Google login
-3. Chat box
-4. Session ID (Passport.js)
-5. Label images with relevant names
+3. Session ID (Passport.js)
+4. Image Uploader
+5. CRUD Funcions For Users, Tasks
+6. Search and Filter Tasks
+
+**Technology**:
+
+- Front-end: React.js
+
+- Back-end: Express.js

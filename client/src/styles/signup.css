@@ -281,3 +281,27 @@
   cursor: pointer;
   color: var(--error);
 }
+.registration .save-image {
+  display: inline-block;
+  font-size: 0.5rem;
+  margin: 10px 0;
+  box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
+  -webkit-transition-duration: 10ms;
+  transition-duration: 10ms;
+}
+.registration .save-image:focus,
+.registration .save-image:hover {
+  box-shadow: 1px 4px 5px 1px rgba(0, 0, 0, 0.1);
+}
+.registration .save-image:active {
+  background-color: var(--secondary);
+  box-shadow: none;
+  -webkit-transition-duration: 10ms;
+  transition-duration: 10ms;
+}
+.registration .progress-bar {
+  height: 5px;
+  border-radius: 5px;
+  background: var(--primary);
+  margin: 2px 0 20px 0;
+}

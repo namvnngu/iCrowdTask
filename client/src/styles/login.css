@@ -175,3 +175,36 @@
   padding: 0 24px;
   font-size: 14px;
 }
+.login-with-face {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--primary);
+  margin: 10px 0;
+  padding: 2px 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
+  -webkit-transition-duration: 10ms;
+  transition-duration: 10ms;
+}
+.login-with-face .login-face {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: var(--main-text);
+}
+.login-with-face svg {
+  height: 35px;
+  width: 35px;
+  margin: 0 10px;
+}
+.login-with-face:focus,
+.login-with-face:hover {
+  box-shadow: 1px 4px 5px 1px rgba(0, 0, 0, 0.1);
+}
+.login-with-face:active {
+  background-color: var(--secondary);
+  box-shadow: none;
+  -webkit-transition-duration: 10ms;
+  transition-duration: 10ms;
+}
