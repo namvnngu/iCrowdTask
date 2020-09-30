@@ -75,10 +75,16 @@ const get_worker_by_id = (req, res) => {
   @url: /workers/by-email
 */
 const get_worker_by_email = (req, res) => {
-  const { email } = req.body;
+  const { email } = req.params;
   User.findOne({ email })
-    .then((user) => res.json({ user, status: "success" }))
-    .catch((err) => res.json({ user: "", status: "error" }));
+    .then((user) => {
+      if (user === null) {
+        res.json({ user: "", message: "Email does not exist" });
+      } else {
+        res.json({ user, message: "success" });
+      }
+    })
+    .catch((err) => res.json({ user: "", message: "Email does not exist" }));
 };
 
 /*

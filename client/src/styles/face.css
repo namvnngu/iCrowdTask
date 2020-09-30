@@ -11,3 +11,19 @@
   flex-direction: column;
   margin-top: 50px;
 }
+.face-recognition-container .take-photo-buttons {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.face-recognition-container .take-photo-buttons > div {
+  margin: 5px;
+  font-size: 0.5rem !important;
+  cursor: pointer;
+}
+.face-recognition-container .camera img {
+  box-shadow: 3px 5px 7px rgba(0, 0, 0, 0.5);
+  border: 3px solid white;
+  padding: 5px;
+}

@@ -109,7 +109,7 @@ const TakePhoto = ({ image, setImage, setError }) => {
       <div className="camera">
         <div className="pre-images">
           {!image && (
-            <video height="280" width="370" id="video" autoPlay muted></video>
+            <video height="560" width="720" id="video" autoPlay muted></video>
           )}
           {image && <img src={dataURL} alt="Display screenshot" />}
         </div>

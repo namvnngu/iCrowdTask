@@ -50,7 +50,7 @@ a:active {
   align-items: center;
 }
 .loader-container .loader {
-  border: 16px solid var(--more-light-text);
+  border: 16px solid rgb(230, 230, 230);
   border-top: 16px solid var(--secondary);
   border-radius: 50%;
   width: 120px;

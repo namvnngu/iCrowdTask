@@ -55,7 +55,7 @@ const Signup = () => {
           setError(data.error);
         } else {
           setRedirect(true);
-          collectionRef.doc().set({ email: data.email, url });
+          collectionRef.doc().set({ face: data._id, url });
         }
       }
     } else {

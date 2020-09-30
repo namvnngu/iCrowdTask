@@ -17,9 +17,7 @@ const EmailInputToFace = () => {
   const hanldeSubmit = async (e) => {
     e.preventDefault();
     if (validator.isEmail(email)) {
-      const { data } = await axios.post(`${URL}/recovery/forgot`, {
-        email,
-      });
+      const { data } = await axios.get(`${URL}/workers/email/${email}`);
       if (data.user === "") {
         setError(data.message);
         setEmail("");

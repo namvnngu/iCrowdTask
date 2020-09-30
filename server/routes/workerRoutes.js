@@ -11,7 +11,7 @@ router.delete("/", workerController.delete_workers);
 router.get("/:id", workerController.get_worker_by_id);
 router.post("/:id", workerController.add_worker_by_id);
 router.delete("/:id", workerController.delete_worker_by_id);
-router.post("/by-email", workerController.get_worker_by_email);
+router.get("/email/:email", workerController.get_worker_by_email);
 
 // Update a worker's address and mobile number
 router.put("/password/:id", workerController.update_password_by_id);
