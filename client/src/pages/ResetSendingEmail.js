@@ -8,9 +8,11 @@ const ResetSendingEmail = () => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState(null);
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const hanldeSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     if (validator.isEmail(email)) {
       const { data } = await axios.post(`${URL}/recovery/forgot`, {
         email,
@@ -24,20 +26,28 @@ const ResetSendingEmail = () => {
     } else {
       setError("Please provide correct email");
     }
+    setLoading(false);
   };
   return (
-    <div className="forgot-password">
-      <div className="form-name">
-        <p>Please enter your email to reset your password</p>
+    <>
+      {loading && (
+        <div className="loader-container">
+          <div className="loader"></div>
+        </div>
+      )}
+      <div className="forgot-password">
+        <div className="form-name">
+          <p>Please enter your email to reset your password</p>
+        </div>
+        <form className="form-body" onSubmit={hanldeSubmit}>
+          {error && <ErrorMessage error={error} setError={setError} />}
+          {sent && <EmailSent />}
+          <EmailInput setEmail={setEmail} setError={setError} email={email} />
+          <SubmitButton />
+        </form>
+        <BackToLogin />
       </div>
-      <form className="form-body" onSubmit={hanldeSubmit}>
-        {error && <ErrorMessage error={error} setError={setError} />}
-        {sent && <EmailSent />}
-        <EmailInput setEmail={setEmail} setError={setError} email={email} />
-        <SubmitButton />
-      </form>
-      <BackToLogin />
-    </div>
+    </>
   );
 };
 const EmailSent = () => {

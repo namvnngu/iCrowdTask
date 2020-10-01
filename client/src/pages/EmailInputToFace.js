@@ -13,14 +13,17 @@ const EmailInputToFace = () => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState(null);
   const [redirect, setRedirect] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const hanldeSubmit = async (e) => {
+    setLoading(true);
     e.preventDefault();
     if (validator.isEmail(email)) {
       const { data } = await axios.get(`${URL}/workers/email/${email}`);
       if (data.user === "") {
         setError(data.message);
         setEmail("");
+        setLoading(false);
       } else {
         let timeExpire = new Date(new Date().getTime() + 60 * 10 * 1000);
         Cookies.set("face", data.user._id, {
@@ -28,27 +31,36 @@ const EmailInputToFace = () => {
           sameSite: "strict",
         });
         setRedirect(true);
+        setLoading(false);
       }
     } else {
       setError("Please provide correct email");
       setEmail("");
+      setLoading(false);
     }
   };
   if (redirect) {
     return <Redirect to="/login/face" />;
   }
   return (
-    <div className="forgot-password">
-      <div className="form-name">
-        <p>Please enter your email to start with face login</p>
+    <>
+      {loading && (
+        <div className="loader-container">
+          <div className="loader"></div>
+        </div>
+      )}
+      <div className="forgot-password">
+        <div className="form-name">
+          <p>Please enter your email to start with face login</p>
+        </div>
+        <form className="form-body" onSubmit={hanldeSubmit}>
+          {error && <ErrorMessage error={error} setError={setError} />}
+          <EmailInput setEmail={setEmail} setError={setError} email={email} />
+          <SubmitButton />
+        </form>
+        <BackToLogin />
       </div>
-      <form className="form-body" onSubmit={hanldeSubmit}>
-        {error && <ErrorMessage error={error} setError={setError} />}
-        <EmailInput setEmail={setEmail} setError={setError} email={email} />
-        <SubmitButton />
-      </form>
-      <BackToLogin />
-    </div>
+    </>
   );
 };
 
