@@ -1,3 +1,7 @@
+<p align="center">
+    <img src="logo.svg">
+</p>
+
 ## iCrowdTask Web App 👥
 
 **Live Demo**: [iCrowdTask](https://icrowdtaskid.firebaseapp.com/)
