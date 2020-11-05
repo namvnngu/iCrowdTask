@@ -3,9 +3,6 @@
 @import url("./home.css");
 @import url("./requesterthumbnail.css");
 @import url("./footer.css");
-@import url("./signup.css");
-@import url("./login.css");
-@import url("./uploader.css");
-@import url("./resetsendingemail.css");
-@import url("./resetpassword.css");
-@import url("./face.css");
+@import url("./requesters.css");
+@import url("./listgrid.css");
+@import url("./workers.css");

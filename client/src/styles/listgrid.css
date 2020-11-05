@@ -1,0 +1,80 @@
+.list-grid-container {
+  display: grid;
+  max-width: 1000px;
+  margin: 20px auto;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 40px;
+}
+
+/* Task Item */
+.taskitem-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.taskitem {
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  width: 250px;
+  transition: all 0.5s ease;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+}
+.taskitem:hover {
+  transform: scale(1.1);
+}
+.taskitem img {
+  border-radius: 5px 5px 0 0;
+  object-fit: cover;
+  height: 250px;
+  width: 250px;
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.1);
+}
+.taskitem .info {
+  padding: 20px;
+}
+.taskitem .info span {
+  display: block;
+}
+.taskitem .info .name {
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--light-text);
+}
+.taskitem .info .desc {
+  font-size: 0.9rem;
+  color: var(--light-text);
+}
+.taskitem .down-icon {
+  position: absolute;
+  right: -10px;
+  top: 0;
+  height: 30px;
+  width: 30px;
+  margin: 10px;
+  cursor: context-menu;
+  border-radius: 20px;
+}
+
+.taskitem .expand-delete {
+  position: absolute;
+  right: 0;
+  top: 35px;
+  height: 30px;
+  width: 50px;
+  margin: 10px;
+  background: white;
+  border-radius: 5px;
+  list-style: none;
+  display: flex;
+  padding: 5px;
+  font-size: 0.9rem;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.taskitem .expand-delete li {
+  cursor: pointer;
+}

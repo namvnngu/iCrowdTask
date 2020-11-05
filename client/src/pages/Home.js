@@ -23,17 +23,22 @@ const Home = () => {
         <img className="home-image" src={HomeImage} alt="Home" />
       </section>
       <h2>Featured Requesters</h2>
-      <div className="list-grid">
-        {requesterList.map((requester) => (
-          <RequestersThumnail
-            key={requester.id}
-            image={requester.image}
-            name={requester.name}
-            description={requester.description}
-          />
-        ))}
-      </div>
+      <ListGrid />
       <Footer />
+    </div>
+  );
+};
+const ListGrid = () => {
+  return (
+    <div className="list-grid">
+      {requesterList.map((requester) => (
+        <RequestersThumnail
+          key={requester.id}
+          image={requester.image}
+          name={requester.name}
+          description={requester.description}
+        />
+      ))}
     </div>
   );
 };

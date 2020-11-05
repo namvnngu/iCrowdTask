@@ -3,7 +3,6 @@ const validate = require("../functions/validateRequest");
 const { hashPassword, reHashPassword } = require("../functions/hashPassword");
 const checkUserExist = require("../functions/checkUser");
 const SendEmail = require("../functions/SendEmail");
-const passport = require("passport");
 
 // User Registration
 const signup_get = (req, res) => {
@@ -11,7 +10,7 @@ const signup_get = (req, res) => {
 };
 
 const signup_post = (req, res) => {
-  // Mongoose generates ID automically by default
+  // Mongoose generates ID automically by defaul
   const { success, message } = validate(req);
   if (success) {
     checkUserExist(req.body.email).then((existingUser) => {
@@ -28,24 +27,19 @@ const signup_post = (req, res) => {
         SendEmail.SendGrid(req.body.email);
 
         const user = new User(userInfo);
-        // user
-        //   .save()
-        //   .then(() => res.redirect("/login"))
-        //   .catch((err) => console.log(err));
         user
           .save()
-          .then((user) => res.json(user))
-          .catch((err) => res.json({ error: "Failed" }));
+          .then(() => res.redirect("/login"))
+          .catch((err) => console.log(err));
       } else {
-        // res.render("reqsignup", {
-        //   message: existingUser.message,
-        //   visible: "visibility: visible",
-        // });
-        res.json({ error: "The email was already regiestered" });
+        res.render("reqsignup", {
+          message: existingUser.message,
+          visible: "visibility: visible",
+        });
       }
     });
   } else {
-    res.json({ error: "Failed" });
+    res.render("reqsignup", { message });
   }
 };
 // Login In
@@ -72,12 +66,6 @@ const login_post = (req, res) => {
     .catch((err) => console.log(err));
 };
 
-const passport_login = (req, res, next) => {
-  passport.authenticate("local", (err, user, info) => {
-    res.json({ err, user, info });
-  })(req, res, next);
-};
-
 const log_out_get = (req, res) => {
   req.logout();
   res.cookie("isSave", "false", { httpOnly: true, maxAge: 3600 * 1000 });
@@ -97,7 +85,6 @@ module.exports = {
   signup_post,
   login_get,
   login_post,
-  passport_login,
   log_out_get,
   save_session,
 };

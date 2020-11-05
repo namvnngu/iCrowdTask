@@ -1,6 +1,5 @@
 const GoogleStrategegy = require("passport-google-oauth20").Strategy;
 const User = require("../models/User");
-const { URL } = require("./constants");
 
 async function authenticateGoogleUser(
   accessToken,
@@ -33,7 +32,8 @@ function intializeGooglePasssport(passport) {
       {
         clientID: process.env.CLIENT_ID_GOOGLE,
         clientSecret: process.env.CLIENT_SECRECT_GOOGLE,
-        callbackURL: `${URL}/auth/google/callback`,
+        callbackURL: "http://icrowdtask.herokuapp.com/auth/google/callback",
+        // callbackURL: "http://localhost:3000/auth/google/callback",
       },
       authenticateGoogleUser
     )

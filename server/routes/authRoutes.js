@@ -20,7 +20,11 @@ router.post(
     }
     next();
   },
-  authController.passport_login
+  passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/login",
+    failureFlash: true,
+  })
 );
 router.get("/logout", isUserAuthenticated, authController.log_out_get);
 router.get("/session-save", authController.save_session);

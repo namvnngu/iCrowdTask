@@ -1,0 +1,67 @@
+.requesters .setup-task,
+.requesters .types,
+.requesters .description-container,
+.requesters .requirement {
+  color: var(--main-text) !important;
+  box-shadow: 1px -2px 2px 2px rgba(0, 0, 0, 0.05);
+  padding: 10px;
+  border-radius: 10px;
+}
+.requesters div.header {
+  background: var(--primary);
+  border-radius: 5px;
+  padding: 5px;
+  box-shadow: 1px 3px 2px 1px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  color: var(--main-text);
+  width: 200px;
+}
+.menu-task #item.active {
+  color: var(--light-text);
+}
+.requesters .button-save-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.requesters .upload-images .error {
+  color: var(--error);
+  font-size: 0.9rem;
+}
+.requesters .upload-images .name-list {
+  display: flex;
+  justify-items: start;
+  flex-wrap: wrap;
+}
+.requesters .upload-images .image-name {
+  word-break: break-all;
+  color: white;
+  font-size: 0.95rem;
+  background: var(--more-light-text);
+  padding: 1px 5px;
+  border-radius: 5px;
+  margin: 10px;
+}
+.modal-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (min-width: 1000px) {
+  .requesters .description-container .title input {
+    width: 700px;
+  }
+  .requesters .description-container .description textarea {
+    width: 700px;
+  }
+  .requesters .setup-task .description textarea {
+    width: 700px;
+  }
+}
+.requesters .description-container .expire input {
+  width: 200px;
+}

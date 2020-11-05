@@ -1,0 +1,48 @@
+.worker-task-container .add-new {
+  position: relative;
+  height: 50px;
+  width: 100%;
+}
+.worker-task-container .add-new .btn {
+  position: absolute;
+  width: 150px;
+  right: 0;
+  top: 0;
+  display: inline-block;
+}
+/* Filter */
+.filter-container {
+  width: 120px;
+}
+.filter-container select {
+  padding: 6px 3px;
+  width: 120px;
+  font-size: 0.8rem;
+  border-radius: 5px;
+  color: var(--light-text);
+  outline: none;
+  border: 1px solid rgba(34, 36, 38, 0.15);
+}
+.worker-task-container .search {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+.worker-task-container .date-filter-expire {
+  padding: 0 20px;
+}
+.worker-task-container .date-filter-expire label {
+  font-size: 0.8rem;
+  color: var(--light-text);
+}
+.worker-task-container .date-filter-expire input {
+  margin: 5px;
+  padding: 6px 3px;
+  width: 120px;
+  font-size: 0.8rem;
+  border-radius: 5px;
+  color: var(--light-text);
+  outline: none;
+  border: 1px solid rgba(34, 36, 38, 0.15);
+}

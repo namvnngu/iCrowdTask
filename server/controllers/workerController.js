@@ -71,23 +71,6 @@ const get_worker_by_id = (req, res) => {
 };
 
 /*
-  @method: POST 
-  @url: /workers/by-email
-*/
-const get_worker_by_email = (req, res) => {
-  const { email } = req.params;
-  User.findOne({ email })
-    .then((user) => {
-      if (user === null) {
-        res.json({ user: "", message: "Email does not exist" });
-      } else {
-        res.json({ user, message: "success" });
-      }
-    })
-    .catch((err) => res.json({ user: "", message: "Email does not exist" }));
-};
-
-/*
   @method: POST
   @url: /workers/:id
   @body
@@ -238,7 +221,6 @@ module.exports = {
   delete_workers,
   get_worker_by_id,
   add_worker_by_id,
-  get_worker_by_email,
   delete_worker_by_id,
   update_address_by_id,
   update_password_by_id,

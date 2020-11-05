@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
 const authRoutes = require("./routes/authRoutes");
 const workerRoutes = require("./routes/workerRoutes");
 const googleAuthRoutes = require("./routes/googleAuthRoutes");
@@ -40,13 +40,8 @@ mongoose
   .catch((err) => console.log(err));
 
 // Middleware and Static Files
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-  );
   next();
 });
 app.use(express.static("public"));

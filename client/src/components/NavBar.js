@@ -1,13 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import AuthContext from "../contexts/authContext";
-import Cookies from "js-cookie";
-import { useGoogleLogout } from "react-google-login";
-import { clientId } from "../utils/constants";
 
-const navItems = ["How it works", "Requesters", "Workers", "Pricing", "About"];
 const Navbar = () => {
-  const auth = useContext(AuthContext);
   const openSideBar = () => {
     let navMobile = document.querySelector(".nav-mobile");
     let hamburgerBtn = document.querySelector("header .hamburger-btn");
@@ -24,22 +18,6 @@ const Navbar = () => {
       hamburgerBtn.classList.remove("open");
     }
   };
-  const handleLogInOut = () => {
-    Cookies.remove("alias");
-    signOut();
-    auth.setAuth(false);
-  };
-  const onLogoutSuccess = (res) => {};
-
-  const onFailure = () => {
-    console.log("Handle failure cases");
-  };
-
-  const { signOut } = useGoogleLogout({
-    clientId,
-    onLogoutSuccess,
-    onFailure,
-  });
   return (
     <>
       <nav className="nav-mobile">
@@ -65,11 +43,11 @@ const Navbar = () => {
               ICrowdTask
             </Link>
           </li>
-          {navItems.map((item, id) => (
-            <li className="nav-item" key={id}>
-              {item}
-            </li>
-          ))}
+          <li className="nav-item">How it works</li>
+          <li className="nav-item">Requesters</li>
+          <li className="nav-item">Workers</li>
+          <li className="nav-item">Pricing</li>
+          <li className="nav-item">About</li>
         </ul>
       </nav>
 
@@ -85,28 +63,32 @@ const Navbar = () => {
         </h1>
         <nav>
           <ul className="nav-lists">
-            {navItems.map((item, id) => (
-              <li className="nav-item" key={id}>
-                {item}
-                <div className="line"></div>
-              </li>
-            ))}
+            <li className="nav-item">
+              How it works
+              <div className="line"></div>
+            </li>
+            <li className="nav-item">
+              Requesters
+              <div className="line"></div>
+            </li>
+            <li className="nav-item">
+              Workers
+              <div className="line"></div>
+            </li>
+            <li className="nav-item">
+              Pricing
+              <div className="line"></div>
+            </li>
+            <li className="nav-item">
+              About
+              <div className="line"></div>
+            </li>
           </ul>
         </nav>
-        <div className="login-container">
-          {auth ? (
-            <div
-              className="btn login-btn"
-              style={{ cursor: "pointer" }}
-              onClick={handleLogInOut}
-            >
-              Log out
-            </div>
-          ) : (
-            <Link to="/login" className="btn login-btn">
-              Log in
-            </Link>
-          )}
+        <div className="login">
+          <Link to="/login" className="btn login-btn">
+            Log In
+          </Link>
         </div>
       </header>
     </>

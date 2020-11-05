@@ -6,10 +6,11 @@ const validator = require("validator");
 const bcrypt = require("bcrypt");
 const uuid = require("uuid");
 sgMail.setApiKey(SENDGRID_API_KEY);
-const { CLIENT_URL } = require("../functions/constants");
 
 const sendToken = (user) => {
-  const tokenLink = `${CLIENT_URL}/recovery/reset-password/${user.recoverPasswordToken}`;
+  const URL = "https://icrowdtask.herokuapp.com";
+  //const URL = "http://localhost:3000";
+  const tokenLink = `${URL}/recovery/reset-password/${user.recoverPasswordToken}`;
   const msg = {
     to: user.email,
     from: "nguyenvietnam2401@gmail.com", // Use the email address or domain you verified above
@@ -44,15 +45,15 @@ const post_email = (req, res) => {
   )
     .then(async (user) => {
       if (user === null) {
-        res.json({ user: "", message: "Email does not exist" });
+        res.render("forgotpassword", { message: "Email not found" });
       } else {
         const savedUser = await User.findOne({ email });
         // Send email
         sendToken(savedUser);
-        res.json({ user: savedUser, message: true });
+        res.render("forgotpassword", { message: "Email sent" });
       }
     })
-    .catch(() => res.json({ user: "", message: "Email does not exist" }));
+    .catch(() => res.redirect("/server-error"));
 };
 const get_reset_password = (req, res) => {
   const token = req.params.token;
@@ -61,22 +62,22 @@ const get_reset_password = (req, res) => {
     recoverTokenExpirationDate: { $gt: Date.now() },
   }).then((user) => {
     if (user === null) {
-      res.json({ message: "invalid" });
+      res.render("invalidtoken");
     } else {
-      res.json({ message: "ok" });
+      res.render("resetpassword", { message: null, token });
     }
   });
 };
 const post_reset_password = async (req, res) => {
   const token = req.params.token;
   let { password, rePassword } = req.body;
-  if (!validator.equals(password, rePassword)) {
-    res.json({
+  if (!validator.equals(password.trim(), rePassword.trim())) {
+    res.render("resetpassword", {
       message: "Passwords do not match",
       token,
     });
-  } else if (!validator.isLength(password, { min: 8 })) {
-    res.json({
+  } else if (!validator.isLength(password.trim(), { min: 8 })) {
+    res.render("resetpassword", {
       message: "Password must be at least 8 characters",
       token,
     });
@@ -96,9 +97,15 @@ const post_reset_password = async (req, res) => {
       }
     )
       .then((user) => {
-        res.json({ message: "login" });
+        if (user === null) {
+          res.render("resetpassword", { message: "Invalid link", token });
+        } else {
+          res.redirect("/login");
+        }
       })
-      .catch(() => res.json({ message: "invalid" }));
+      .catch(() =>
+        res.render("resetpassword", { message: "Invalid link", token })
+      );
   }
 };
 
