@@ -1,14 +1,11 @@
-<p align="center">
-    <img src="logo.svg">
-</p>
+# iCrowdTask Web App 👥
 
-## iCrowdTask Web App 👥
+<img align="right" width="160" src="logo.svg">
 
-**Live Demo**:
-
+<!-- **Live Demo**:
 - Face recognition: [iCrowdTask - Face](https://face-3b3c7.firebaseapp.com/)
 - Task Request Register & View: [iCrowdTask - Task](https://icrowdtaskid-63e5d.firebaseapp.com/)
-- Back-end: [iCrowdTask - Main Server](https://icrowdtask.herokuapp.com/) and [iCrowdTask - Server Face](https://faceapp-reg.herokuapp.com/)
+- Back-end: [iCrowdTask - Main Server](https://icrowdtask.herokuapp.com/) and [iCrowdTask - Server Face](https://faceapp-reg.herokuapp.com/) -->
 
 **Features**:
 
