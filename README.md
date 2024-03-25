@@ -1,7 +1,5 @@
 # iCrowdTask Web App 👥
 
-<img align="right" width="160" src="logo.svg">
-
 <!-- **Live Demo**:
 - Face recognition: [iCrowdTask - Face](https://face-3b3c7.firebaseapp.com/)
 - Task Request Register & View: [iCrowdTask - Task](https://icrowdtaskid-63e5d.firebaseapp.com/)
